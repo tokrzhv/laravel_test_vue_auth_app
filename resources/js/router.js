@@ -13,22 +13,22 @@ const router = new VueRouter({
         },
         {
             path: '/user/login',
-            component: () => import('./Views/Auth/Login.vue'),
+            component: () => import('./views/auth/Login.vue'),
             name: 'user.login'
         },
         {
             path: '/user/registration',
-            component: () => import('./Views/Auth/Registration.vue'),
+            component: () => import('./views/auth/Registration.vue'),
             name: 'user.registration'
         },
         {
             path: '/profile',
-            component: () => import('./Views/Profile/IndexProfile.vue'),
+            component: () => import('./views/profile/IndexProfile.vue'),
             name: 'profile'
         },
         {
             path: '/profile/:id',
-            component: () => import('./Views/Profile/EditProfile.vue'),
+            component: () => import('./views/profile/EditProfile.vue'),
             name: 'profile.edit',
         },
     ]

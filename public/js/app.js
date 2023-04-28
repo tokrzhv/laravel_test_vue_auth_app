@@ -5739,25 +5739,25 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/user/login',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_Views_Auth_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./Views/Auth/Login.vue */ "./resources/js/Views/Auth/Login.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_auth_Login_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/auth/Login.vue */ "./resources/js/views/auth/Login.vue"));
     },
     name: 'user.login'
   }, {
     path: '/user/registration',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_Views_Auth_Registration_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./Views/Auth/Registration.vue */ "./resources/js/Views/Auth/Registration.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_auth_Registration_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/auth/Registration.vue */ "./resources/js/views/auth/Registration.vue"));
     },
     name: 'user.registration'
   }, {
     path: '/profile',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_Views_Profile_IndexProfile_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./Views/Profile/IndexProfile.vue */ "./resources/js/Views/Profile/IndexProfile.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_profile_IndexProfile_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/profile/IndexProfile.vue */ "./resources/js/views/profile/IndexProfile.vue"));
     },
     name: 'profile'
   }, {
     path: '/profile/:id',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_Views_Profile_EditProfile_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./Views/Profile/EditProfile.vue */ "./resources/js/Views/Profile/EditProfile.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_profile_EditProfile_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/profile/EditProfile.vue */ "./resources/js/views/profile/EditProfile.vue"));
     },
     name: 'profile.edit'
   }]
@@ -49404,7 +49404,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Views_Auth_Login_vue":1,"resources_js_Views_Auth_Registration_vue":1,"resources_js_Views_Profile_IndexProfile_vue":1,"resources_js_Views_Profile_EditProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_auth_Login_vue":1,"resources_js_views_auth_Registration_vue":1,"resources_js_views_profile_IndexProfile_vue":1,"resources_js_views_profile_EditProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
