@@ -51,7 +51,7 @@ import {required, email, minLength} from "vuelidate/lib/validators";
 import Swal from "sweetalert2";
 
 const checkUnique = (value) => {
-    return axios.get(`/api/check-email/${value}`)
+    return axios.get(`/api/profile/check-email/${value}`)
         .then(response => {
             return response.data
         });

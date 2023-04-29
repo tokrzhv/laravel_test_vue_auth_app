@@ -5324,11 +5324,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      token: null
+      token: null,
+      user: ''
     };
   },
   mounted: function mounted() {
     this.getToken();
+    this.getUser();
   },
   updated: function updated() {
     this.getToken();
@@ -5336,6 +5338,12 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getToken: function getToken() {
       this.token = localStorage.getItem('x_xsrf_token');
+    },
+    getUser: function getUser() {
+      var _this = this;
+      axios.get('/api/profile/').then(function (result) {
+        _this.user = result.data.data;
+      });
     }
   }
 });
@@ -5384,7 +5392,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Navbar",
   props: {
-    token: String
+    token: String,
+    user: {}
   },
   methods: {
     logout: function logout() {
@@ -5402,6 +5411,7 @@ __webpack_require__.r(__webpack_exports__);
             setTimeout(function () {
               window.location.reload();
             }, 500);
+            localStorage.removeItem('userRole');
             localStorage.removeItem('x-xsrf-token');
           });
         }
@@ -5431,7 +5441,8 @@ var render = function render() {
     staticClass: "row"
   }, [_c("header", [_c("Navbar", {
     attrs: {
-      token: _vm.token
+      token: _vm.token,
+      user: _vm.user
     }
   })], 1), _vm._v(" "), _c("router-view"), _vm._v(" "), _c("Content", {
     attrs: {
@@ -5445,10 +5456,7 @@ var staticRenderFns = [function () {
   return _c("footer", {
     staticClass: "bg-dark text-center text-lg-start text-white"
   }, [_c("div", {
-    staticClass: "text-center p-4",
-    staticStyle: {
-      "background-color": "rgba(0, 0, 0, 0.2)"
-    }
+    staticClass: "text-center p-4"
   }, [_vm._v("\n            © 2023 Copyright:\n            "), _c("a", {
     staticClass: "text-white",
     attrs: {
@@ -5586,7 +5594,16 @@ var render = function render() {
         name: "profile"
       }
     }
-  }, [_vm._v("Profile")])], 1) : _vm._e(), _vm._v(" "), _vm.token ? _c("li", {
+  }, [_vm._v("Profile")])], 1) : _vm._e(), _vm._v(" "), _vm.token && _vm.user.role === 1 ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "nav-link",
+    attrs: {
+      to: {
+        name: "admin"
+      }
+    }
+  }, [_vm._v("Admin panel")])], 1) : _vm._e(), _vm._v(" "), _vm.token ? _c("li", {
     staticClass: "nav-item",
     on: {
       click: function click($event) {
@@ -5749,6 +5766,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     },
     name: 'user.registration'
   }, {
+    path: '/admin',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_IndexAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/IndexAdmin.vue */ "./resources/js/views/admin/IndexAdmin.vue"));
+    },
+    name: 'admin'
+  }, {
     path: '/profile',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_views_profile_IndexProfile_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/profile/IndexProfile.vue */ "./resources/js/views/profile/IndexProfile.vue"));
@@ -5761,6 +5784,19 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     },
     name: 'profile.edit'
   }]
+});
+router.beforeEach(function (to, from, next) {
+  var userRole = localStorage.getItem('userRole');
+  if (userRole === '0') {
+    if (to.path === '/profile' || to.name === 'profile.edit' || to.path === '/') {
+      return next();
+    } else {
+      return next({
+        path: '/'
+      });
+    }
+  }
+  next();
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
@@ -49404,7 +49440,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_auth_Login_vue":1,"resources_js_views_auth_Registration_vue":1,"resources_js_views_profile_IndexProfile_vue":1,"resources_js_views_profile_EditProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_auth_Login_vue":1,"resources_js_views_auth_Registration_vue":1,"resources_js_views_admin_IndexAdmin_vue":1,"resources_js_views_profile_IndexProfile_vue":1,"resources_js_views_profile_EditProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

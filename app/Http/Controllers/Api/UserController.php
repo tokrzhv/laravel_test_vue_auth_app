@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\UpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): UserResource
     {
         if (Auth::check()) {
             $user = Auth::user();
@@ -31,7 +31,7 @@ class UserController extends Controller
         return response([]);
     }
 
-    public function checkEmail($email)
+    public function checkEmail($email): JsonResponse
     {
         $user = Auth::user();
         $isUnique = !User::where('id', 'not like', $user->id)
@@ -39,7 +39,7 @@ class UserController extends Controller
             ->exists();
         return response()->json($isUnique);
     }
-    public function checkRegEmail($email)
+    public function checkRegEmail($email): JsonResponse
     {
         $isUnique = !User::where('email', $email)->exists();
         return response()->json($isUnique);

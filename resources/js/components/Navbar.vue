@@ -28,6 +28,9 @@
                     <li v-if="token" class="nav-item">
                         <router-link :to="{ name: 'profile' }" class="nav-link">Profile</router-link>
                     </li>
+                    <li v-if="token && user.role === 1" class="nav-item">
+                        <router-link :to="{ name: 'admin' }" class="nav-link">Admin panel</router-link>
+                    </li>
                     <li v-if="token" @click.prevent="logout" class="nav-item">
                         <input @click.prevent="logout" type="submit" class="btn btn-danger" value="Logout">
                     </li>
@@ -43,7 +46,8 @@ import Swal from "sweetalert2";
 export default {
     name: "Navbar",
     props: {
-        token: String
+        token: String,
+        user: {}
     },
     methods: {
         logout() {
@@ -63,6 +67,7 @@ export default {
                             setTimeout(function () {
                                 window.location.reload()
                             }, 500);
+                            localStorage.removeItem('userRole')
                             localStorage.removeItem('x-xsrf-token')
                         })
                 }

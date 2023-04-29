@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <header>
-            <Navbar :token="token"></Navbar>
+            <Navbar :token="token" :user="user"></Navbar>
         </header>
 
         <router-view/>
@@ -9,7 +9,7 @@
 
         <footer class="bg-dark text-center text-lg-start text-white">
             <!-- Copyright -->
-            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.2)">
+            <div class="text-center p-4">
                 © 2023 Copyright:
                 <a class="text-white" href="https://github.com/tokrzhv">tokrzhv</a>
             </div>
@@ -33,10 +33,12 @@ export default {
     data() {
         return {
             token: null,
+            user: '',
         }
     },
     mounted() {
         this.getToken()
+        this.getUser()
     },
     updated() {
         this.getToken()
@@ -44,6 +46,12 @@ export default {
     methods: {
         getToken() {
             this.token = localStorage.getItem('x_xsrf_token')
+        },
+        getUser() {
+            axios.get('/api/profile/')
+                .then(result => {
+                    this.user = result.data.data
+                })
         },
     }
 }

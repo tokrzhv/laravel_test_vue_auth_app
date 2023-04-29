@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var checkUnique = function checkUnique(value) {
-  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/check-email/".concat(value)).then(function (response) {
+  return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/profile/check-email/".concat(value)).then(function (response) {
     return response.data;
   });
 };

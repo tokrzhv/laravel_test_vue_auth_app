@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Personal",
+  name: "IndexProfile",
   data: function data() {
     return {
       user: '',
@@ -33,6 +33,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       axios.get('/api/profile/').then(function (result) {
         _this.user = result.data.data;
+        localStorage.setItem('userRole', _this.user.role);
       });
     },
     deleteUser: function deleteUser(id) {
@@ -48,6 +49,7 @@ __webpack_require__.r(__webpack_exports__);
         if (result.isConfirmed) {
           axios["delete"]("/api/profile/".concat(id)).then(function (result) {
             sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire('Deleted!', 'Profile has been deleted.', 'success');
+            localStorage.removeItem('userRole');
             localStorage.removeItem('x-xsrf-token');
             setTimeout(function () {
               window.location.reload();

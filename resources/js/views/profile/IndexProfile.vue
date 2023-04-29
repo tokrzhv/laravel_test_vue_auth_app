@@ -25,7 +25,7 @@
 import Swal from "sweetalert2";
 
 export default {
-    name: "Personal",
+    name: "IndexProfile",
 
     data() {
         return {
@@ -44,6 +44,7 @@ export default {
             axios.get('/api/profile/')
                 .then(result => {
                     this.user = result.data.data
+                    localStorage.setItem('userRole', this.user.role)
                 })
         },
         deleteUser(id) {
@@ -65,6 +66,7 @@ export default {
                                 'Profile has been deleted.',
                                 'success'
                             )
+                            localStorage.removeItem('userRole')
                             localStorage.removeItem('x-xsrf-token')
                             setTimeout(function () {
                                 window.location.reload()

@@ -22,6 +22,11 @@ const router = new VueRouter({
             name: 'user.registration'
         },
         {
+            path: '/admin',
+            component: () => import('./views/admin/IndexAdmin.vue'),
+            name: 'admin',
+        },
+        {
             path: '/profile',
             component: () => import('./views/profile/IndexProfile.vue'),
             name: 'profile'
@@ -32,5 +37,20 @@ const router = new VueRouter({
             name: 'profile.edit',
         },
     ]
+})
+
+router.beforeEach((to, from, next) => {
+
+    const userRole = localStorage.getItem('userRole')
+    if (userRole === '0') {
+        if (to.path === '/profile' || to.name === 'profile.edit' || to.path === '/') {
+            return next()
+        } else {
+            return next({
+                path: '/'
+            })
+        }
+    }
+    next()
 })
 export default router
