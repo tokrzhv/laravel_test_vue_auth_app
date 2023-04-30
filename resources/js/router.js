@@ -22,9 +22,14 @@ const router = new VueRouter({
             name: 'user.registration'
         },
         {
-            path: '/admin',
-            component: () => import('./views/admin/IndexAdmin.vue'),
-            name: 'admin',
+            path: '/admin/user/list',
+            component: () => import('./views/admin/users/IndexAdmin.vue'),
+            name: 'admin.index',
+        },
+        {
+            path: '/admin/user/create',
+            component: () => import('./views/admin/users/CreateAdmin.vue'),
+            name: 'admin.create',
         },
         {
             path: '/profile',

@@ -29,7 +29,10 @@
                         <router-link :to="{ name: 'profile' }" class="nav-link">Profile</router-link>
                     </li>
                     <li v-if="token && user.role === 1" class="nav-item">
-                        <router-link :to="{ name: 'admin' }" class="nav-link">Admin panel</router-link>
+                        <router-link :to="{ name: 'admin.index' }" class="nav-link">User list</router-link>
+                    </li>
+                    <li v-if="token && user.role === 1" class="nav-item">
+                        <router-link :to="{ name: 'admin.create' }" class="nav-link">Add new user</router-link>
                     </li>
                     <li v-if="token" @click.prevent="logout" class="nav-item">
                         <input @click.prevent="logout" type="submit" class="btn btn-danger" value="Logout">

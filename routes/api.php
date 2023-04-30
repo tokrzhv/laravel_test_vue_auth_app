@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth:sanctum'], function (){
 
     Route::group(['prefix' => 'admin'], function(){
         Route::get('/users', [\App\Http\Controllers\Api\Admin\AdminController::class , 'index']);
+        Route::post('/users/create', [\App\Http\Controllers\Api\Admin\AdminController::class, 'create']);
     });
 
 });

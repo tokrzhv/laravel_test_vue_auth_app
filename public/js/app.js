@@ -5600,10 +5600,19 @@ var render = function render() {
     staticClass: "nav-link",
     attrs: {
       to: {
-        name: "admin"
+        name: "admin.index"
       }
     }
-  }, [_vm._v("Admin panel")])], 1) : _vm._e(), _vm._v(" "), _vm.token ? _c("li", {
+  }, [_vm._v("User list")])], 1) : _vm._e(), _vm._v(" "), _vm.token && _vm.user.role === 1 ? _c("li", {
+    staticClass: "nav-item"
+  }, [_c("router-link", {
+    staticClass: "nav-link",
+    attrs: {
+      to: {
+        name: "admin.create"
+      }
+    }
+  }, [_vm._v("Add new user")])], 1) : _vm._e(), _vm._v(" "), _vm.token ? _c("li", {
     staticClass: "nav-item",
     on: {
       click: function click($event) {
@@ -5766,11 +5775,17 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     },
     name: 'user.registration'
   }, {
-    path: '/admin',
+    path: '/admin/user/list',
     component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_IndexAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/IndexAdmin.vue */ "./resources/js/views/admin/IndexAdmin.vue"));
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_users_IndexAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/users/IndexAdmin.vue */ "./resources/js/views/admin/users/IndexAdmin.vue"));
     },
-    name: 'admin'
+    name: 'admin.index'
+  }, {
+    path: '/admin/user/create',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_views_admin_users_CreateAdmin_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./views/admin/users/CreateAdmin.vue */ "./resources/js/views/admin/users/CreateAdmin.vue"));
+    },
+    name: 'admin.create'
   }, {
     path: '/profile',
     component: function component() {
@@ -49440,7 +49455,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_views_auth_Login_vue":1,"resources_js_views_auth_Registration_vue":1,"resources_js_views_admin_IndexAdmin_vue":1,"resources_js_views_profile_IndexProfile_vue":1,"resources_js_views_profile_EditProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_views_auth_Login_vue":1,"resources_js_views_auth_Registration_vue":1,"resources_js_views_admin_users_IndexAdmin_vue":1,"resources_js_views_admin_users_CreateAdmin_vue":1,"resources_js_views_profile_IndexProfile_vue":1,"resources_js_views_profile_EditProfile_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
